@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/ps-logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pranav Subash Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap">
+    <style>
+      /* Critical styles to prevent FOUC */
+      body {
+        margin: 0;
+        background-color: #2C001E;
+        color: #fff;
+        font-family: 'Ubuntu Mono', monospace;
+      }
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .terminal-container {
+        background-color: #2C001E;
+        color: #fff;
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+      }
+      .terminal-line {
+        margin: 0.25rem 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CEqj4wvJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B72qOH_W.css">
+  </head>
+  <body>
+    <div id="root">
+      <div className="terminal-container">
+        <div className="terminal-line">Welcome to the Portfolio Terminal! Type "help" for available commands.</div>
+        <div className="terminal-line">
+          <span className="terminal-prompt"></span>
+          <input 
+            type="text" 
+            className="terminal-input"
+            autoFocus
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

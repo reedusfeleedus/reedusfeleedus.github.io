@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #300A24; /* Updated to match Ubuntu terminal purple */
+  color: #FFFFFF;
+  font-family: 'Ubuntu Mono', monospace;
+  min-height: 100vh; /* Ensure full viewport height */
+  overflow: hidden; /* Prevent scrolling on the body */
+}
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title Bar Styles */
+.title-bar {
+  background-color: #2b2b2b;  /* Darker than menu bar */
+  color: white;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-app-region: drag;
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+.title-bar-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.minimize { background-color: #f7c94b; }
+.maximize { background-color: #62c554; }
+.close { background-color: #ed6a5e; }
+
+/* Updated Navbar and Dropdown Styles */
+.navbar {
+  background-color: #3c3b37;  /* Original menu bar color */
+  padding: 4px;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  z-index: 100;
+}
+
+.menu-wrapper {
+  position: relative;
+}
+
+.menu-item {
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.menu-item:hover, .menu-item.active {
+  background-color: #4a4a4a;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #3c3b37;
+  border: 1px solid #2c2c2c;
+  min-width: 150px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #4a4a4a;
+}
+
+/* Terminal Styles */
+.terminal-container {
+  flex: 1;
+  background-color: #2D0922;
+  padding: 20px;
+  overflow-y: auto;
+  font-family: 'Ubuntu Mono', monospace;
+  scroll-behavior: smooth;
+}
+
+/* Command Prompt Styling */
+.terminal-prompt {
+  color: #98C379;
+  padding-right: 10px;
+}
+
+.terminal-prompt::before {
+  content: "portfolio@ubuntu:~$ ";
+  color: #98C379;
+}
+
+/* AI Mode Prompt Styling */
+.terminal-prompt.ai-mode::before {
+  content: ">> ";
+  color: #00ffff;
+}
+
+/* AI Mode Output Styling */
+.ai-question {
+  color: #00ffff;
+}
+
+.ai-response {
+  color: #0099CC;
+}
+
+.ai-system-message {
+  color: #ffffff;
+}
+
+/* Input Styling */
+.terminal-input {
+  display: inline-block;
+  min-width: 1px;
+  color: #FFFFFF;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+  outline: none;
+  caret-color: #FFFFFF;
+}
+
+/* Override input color in AI mode */
+.terminal-input.ai-question {
+  color: #00ffff;
+  caret-color: #00ffff;
+}
+
+/* Output Styling */
+.terminal-line {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.output-line {
+  padding-left: 2rem;
+}
+
+/* File Listing Styling */
+.file-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  color: #4FA6ED;
+}
+
+/* Section Styling */
+.section-header {
+  color: #E6E6E6;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.section-separator {
+  color: #666666;
+  margin-bottom: 1rem;
+}
+
+/* Error and Success Messages */
+.error-message {
+  color: #E06C75;
+}
+
+.success-message {
+  color: #89CA78;
+}
+
+/* System Messages */
+.system-message {
+  color: #ABB2BF;
+}
+
+/* Completion Suggestions */
+.completion-line {
+  color: #666666;
+  padding-left: 2rem;
+  font-style: italic;
+}
+
+/* Add styles for formatted text for ai responses*/
+.terminal-line strong {
+  font-weight: bold;
+  color: #f7c94b;
+}
+
+.terminal-line h3 {
+  color: #00ffff;
+  margin: 10px 0;
+  font-size: 1.1em;
+}

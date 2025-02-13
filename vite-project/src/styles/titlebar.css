@@ -1,0 +1,26 @@
+.title-bar {
+  background-color: #3c3b37;
+  color: white;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.title-bar-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.minimize { background-color: #f7c94b; }
+.maximize { background-color: #62c554; }
+.close { background-color: #ed6a5e; }

@@ -1,0 +1,32 @@
+.navbar {
+  background-color: #3c3b37;
+  padding: 4px;
+  display: flex;
+  gap: 16px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.menu-item {
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-item:hover {
+  background-color: #4a4a4a;
+}
+
+.menu-item.active {
+  background-color: #4a4a4a;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #3c3b37;
+  border: 1px solid #2c2c2c;
+  min-width: 200px;
+  z-index: 1000;
+}
