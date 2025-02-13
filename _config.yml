@@ -1,0 +1,7 @@
+exclude:
+  - vite-project/node_modules/
+  - vite-project/dist/
+  - vite-project/.vite/
+  - .git/
+  - .github/
+  - "*.log" 
