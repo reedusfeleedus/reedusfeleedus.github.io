@@ -9,6 +9,17 @@ const SPECIAL_FILES = {
   'resume.pdf': '/resume.pdf'
 };
 
+// Maps file names without extensions to their full names
+const FILE_MAPPINGS = {
+  'education': 'education.txt',
+  'experience': 'experience.txt',
+  'projects': 'projects.txt',
+  'skills': 'skills.txt',
+  'extracurriculars': 'extracurriculars.txt',
+  'contact': 'contact.txt',
+  'resume': 'resume.pdf'
+};
+
 // Core command implementations
 const commands = {
   ls: (params = []) => {
@@ -20,6 +31,11 @@ const commands = {
 
   cat: ([filename, ...rest]) => {
     if (!filename) return formatOutput(MESSAGES.MISSING_ARGS('cat'), 'error');
+    
+    // Check if it's a file name without extension
+    if (FILE_MAPPINGS[filename]) {
+      return formatOutput(`Command not found. Did you mean: cat ${FILE_MAPPINGS[filename]}`, 'error');
+    }
     
     if (!isValidFile(filename, AVAILABLE_FILES)) {
       return formatOutput(MESSAGES.FILE_NOT_FOUND(filename), 'error');

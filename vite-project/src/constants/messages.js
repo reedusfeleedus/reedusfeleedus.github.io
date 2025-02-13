@@ -14,21 +14,16 @@ export const MESSAGES = {
   WELCOME: `You are connected to portfolio@ubuntu
 Time connected: ${new Date().toLocaleTimeString()}
 
-Welcome! This is a fake terminal. I thought it would be a fun way to explore my portfolio. 
-There are two ways to do this:
+👋 Welcome! 
+This is a fake terminal - I thought it would be a fun way to explore my portfolio.
+⚠️  Since this is a terminal interface, it's designed for desktop viewing. Mobile experience will be limited.
 
-AI ASSISTANT (Recommended for non-technical users): 
-- Type 'ai' to enter AI mode
-- Type 'exit' to exit AI mode
-- Simply ask questions in natural language if you have any questions about my experience, skills, or projects
-- Example: "What projects have you worked on?" or "Tell me about your backend experience"
+I would suggest checking out the site tutorial on the top to get started, or type 'help' to see available commands.
+This site comes with two modes:
 
-TERMINAL COMMANDS (More fun if you're tech-savvy):
-- Type 'help' to see all available commands
-- Use 'ls' to view portfolio sections
-- Read files with 'cat' (e.g. 'cat projects.txt')
-- Tab completion and command history supported
+1. AI ASSISTANT (For non-technical users): Type 'ai' to enter AI mode, type 'exit' to exit AI mode.
+2. TERMINAL COMMANDS (For tech-savvy users): Use normal terminal commands like 'ls', 'cat', 'pwd', etc.
 
-Type 'clear' for a fresh start. Happy exploring! 🚀`,
+Happy exploring! 🚀`,
   PWD: '/home/portfolio'
 };

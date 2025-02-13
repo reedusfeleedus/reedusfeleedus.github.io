@@ -9,35 +9,40 @@ export const isValidFile = (filename, availableFiles) => {
   return availableFiles.includes(filename);
 };
 
-// New validation utilities
+// Maps file names without extensions to their full names
+const FILE_MAPPINGS = {
+  'education': 'education.txt',
+  'experience': 'experience.txt',
+  'projects': 'projects.txt',
+  'skills': 'skills.txt',
+  'extracurriculars': 'extracurriculars.txt',
+  'contact': 'contact.txt',
+  'resume': 'resume.pdf'
+};
+
 export const getCommandSuggestion = (input) => {
   const baseCommands = ['ls', 'cat', 'pwd', 'clear', 'help', 'whoami', 'contact', 'download', 'ai'];
-  const inputCommand = input.split(' ')[0].toLowerCase();
+  const inputParts = input.split(' ');
+  const inputCommand = inputParts[0].toLowerCase();
   
   // Don't suggest anything for 'exit' command
   if (inputCommand === 'exit') {
     return `Command 'exit' can only be used in AI mode`;
   }
 
-  // Check if input matches a file name (with or without extension)
-  const fileNames = {
-    'education': 'education.txt',
-    'experience': 'experience.txt',
-    'projects': 'projects.txt',
-    'skills': 'skills.txt',
-    'extracurriculars': 'extracurriculars.txt',
-    'contact': 'contact.txt',
-    'resume': 'resume.pdf'
-  };
-
-  // Check for exact file names (with extension)
-  if (Object.values(fileNames).includes(inputCommand)) {
-    return `Command '${input}' not found. Did you mean: cat ${inputCommand}`;
+  // Handle 'cat' command with file arguments
+  if (inputCommand === 'cat' && inputParts.length > 1) {
+    const fileArg = inputParts[1];
+    // Check if it's a file name without extension
+    if (FILE_MAPPINGS[fileArg]) {
+      return `Command not found. Did you mean: cat ${FILE_MAPPINGS[fileArg]}`;
+    }
   }
 
-  // Check for file names without extension
-  if (Object.keys(fileNames).includes(inputCommand)) {
-    return `Command '${input}' not found. Did you mean: cat ${fileNames[inputCommand]}`;
+  // Check if input matches a file name (with or without extension)
+  if (Object.values(FILE_MAPPINGS).includes(inputCommand) || Object.keys(FILE_MAPPINGS).includes(inputCommand)) {
+    const fullFileName = FILE_MAPPINGS[inputCommand] || inputCommand;
+    return `Command '${input}' not found. Did you mean: cat ${fullFileName}`;
   }
   
   // Find closest matching command
