@@ -18,6 +18,27 @@ export const getCommandSuggestion = (input) => {
   if (inputCommand === 'exit') {
     return `Command 'exit' can only be used in AI mode`;
   }
+
+  // Check if input matches a file name (with or without extension)
+  const fileNames = {
+    'education': 'education.txt',
+    'experience': 'experience.txt',
+    'projects': 'projects.txt',
+    'skills': 'skills.txt',
+    'extracurriculars': 'extracurriculars.txt',
+    'contact': 'contact.txt',
+    'resume': 'resume.pdf'
+  };
+
+  // Check for exact file names (with extension)
+  if (Object.values(fileNames).includes(inputCommand)) {
+    return `Command '${input}' not found. Did you mean: cat ${inputCommand}`;
+  }
+
+  // Check for file names without extension
+  if (Object.keys(fileNames).includes(inputCommand)) {
+    return `Command '${input}' not found. Did you mean: cat ${fileNames[inputCommand]}`;
+  }
   
   // Find closest matching command
   const closestMatch = baseCommands.find(cmd => 

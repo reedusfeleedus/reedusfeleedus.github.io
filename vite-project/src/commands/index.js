@@ -30,7 +30,7 @@ const commands = {
       return `Opened resume at <a href="${SPECIAL_FILES[filename]}" target="_blank" class="text-blue-500 hover:underline">${SPECIAL_FILES[filename]}</a>`;
     }
     
-    return formatFileContent(FILES[filename]);
+    return formatFileContent(FILES[filename], filename);
   },
 
   pwd: () => formatOutput(MESSAGES.PWD, 'muted'),
@@ -67,55 +67,98 @@ GitHub: ${formatOutput(GITHUB, 'link')}`.trim();
   }
 };
 
-// Content formatting rules
+
 const formatRules = [
   // Headers and separators
-  [/^[A-Z\s]+$/, line => formatOutput(line, 'header')],
-  [/^=+$/, line => line],
+  [/^[A-Z\s]+$/, (line, match, context) => formatOutput(line, 'header')],
+  [/^=+$/, (line, match, context) => line],
   
-  // Education institutions
-  [/(King's College London|Global Public School)/, (line, match) => 
+
+  [/(King's College London|Global Public School)/, (line, match, context) => 
     line.replace(match[0], formatOutput(match[0], 'error'))],
   
-  // Dates and qualifications
-  [/(Bachelor of Science|A Levels)/, line => formatOutput(line, 'date')],
-  [/\((April|June\s+\d{4})\)/, (line, match) => 
+
+  [/(Bachelor of Science|A Levels)/, (line, match, context) => formatOutput(line, 'date')],
+  [/\((April|June\s+\d{4})\)/, (line, match, context) => 
     line.replace(match[0], `(${formatOutput(match[1], 'date')})`)],
-  [/A\*/, (line, match) => line.replace(match[0], formatOutput(match[0], 'numbers'))],
+  [/A\*/, (line, match, context) => line.replace(match[0], formatOutput(match[0], 'numbers'))],
   
   // Skills and tech
-  [/^(Programming Languages:|Frameworks & Tools:)$/, line => formatOutput(line, 'label')],
-  [/^Tech Stack:(.+)/, (line, match) => 
+  [/^(Programming Languages:|Frameworks & Tools:)$/, (line, match, context) => formatOutput(line, 'label')],
+  [/^Tech Stack:(.+)/, (line, match, context) => 
     `${formatOutput('Tech Stack:', 'label')}: ${match[1].split(',')
       .map(tech => formatOutput(tech.trim(), 'tech')).join(', ')}`],
   
   // Projects and bullet points
-  [/^([A-Za-z\s]+)\s*(\([A-Za-z\s]+\d{4}\))/, (line, match) => 
-    `${formatOutput(match[1].trim(), 'project')}${match[2]}`],
-  [/^-\s*(.+)/, (line, match) => {
+  [/^([A-Za-z\s]+)\s*(\((?:Nov|Dec|Mar|Jun)\s+\d{4}\))/, (line, match, context) => 
+    `${formatOutput(match[1].trim(), 'error')}(${formatOutput(match[2].slice(1, -1), 'date')})`],
+  
+  // Extracurriculars specific title formatting
+  [/^(First Place|Student Council|Third Place)\s*-\s*([A-Za-z0-9\s-]+)\(([A-Za-z\s]+\d{4})\)\(([\w\s,]+)\)/, (line, match, context) => {
+    if (context === 'extracurriculars.txt') {
+      const [_, mainTitle, subtitle, date, location] = match;
+      return `${formatOutput(mainTitle, 'label')} - ${formatOutput(subtitle, 'tech')}(${formatOutput(date, 'error')})(${formatOutput(location, 'date')})`;
+    }
+    return line;
+  }],
+  [/^-\s*(.+)/, (line, match, context) => {
     const content = match[1];
     const bullet = formatOutput('-', 'bullet');
     
-    // Tech stack bullets
-    if (/Python|Java|React|SQL|Firebase|Assembly/.test(content)) {
-      return `${bullet} ${content.split(', ')
-        .map(tech => formatOutput(tech.trim(), 'tech')).join(', ')}`;
+    // Handle different contexts
+    switch(context) {
+      case 'skills.txt':
+        // In skills.txt, format all technologies
+        return `${bullet} ${content.split(', ')
+          .map(tech => formatOutput(tech.trim(), 'tech')).join(', ')}`;
+        
+      case 'extracurriculars.txt':
+        // Highlight important achievements in extracurriculars
+        const keyMetrics = [
+          '5-day',
+          'first place',
+          '15\\+ teams',
+          '3-person',
+          'voted',
+          '300\\+ students',
+          '20-student',
+          '40%',
+          '24-hour',
+          'winning'
+        ].join('|');
+        
+        return `${bullet} ${content
+          .replace(new RegExp(`(${keyMetrics})`, 'gi'), 
+            match => formatOutput(match, 'numbers'))}`;
+        
+      case 'projects.txt':
+        // In projects.txt, handle tech stacks and specific lines
+        if (content.includes('Tech Stack')) {
+          return `${bullet} ${content.split(',')
+            .map(tech => formatOutput(tech.trim(), 'tech')).join(',')}`;
+        }
+        // Numbers and stats for projects
+        return `${bullet} ${content.replace(
+          /\d+%|\d+\+|\d+k\+|\d+(?=\s*participants|\s*visitors|\s*students)/g, 
+          stat => formatOutput(stat, 'numbers')
+        )}`;
+        
+      default:
+        // Default number formatting for other contexts
+        return `${bullet} ${content.replace(
+          /\d+%|\d+\+|\d+k\+|\d+(?=\s*participants|\s*visitors|\s*students)/g, 
+          stat => formatOutput(stat, 'numbers')
+        )}`;
     }
-    
-    // Numbers and stats
-    return `${bullet} ${content.replace(
-      /\d+%|\d+\+|\d+k\+|\d+(?=\s*participants|\s*visitors|\s*students)/g, 
-      stat => formatOutput(stat, 'numbers')
-    )}`;
   }]
 ];
 
-function formatFileContent(content) {
+function formatFileContent(content, filename = '') {
   return content.split('\n').map(line => {
     for (const [pattern, formatter] of formatRules) {
       const match = line.match(pattern);
       if (match) {
-        return formatter(line, match);
+        return formatter(line, match, filename);
       }
     }
     return line;
@@ -125,6 +168,12 @@ function formatFileContent(content) {
 export const executeCommand = (input) => {
   const { command, params } = parseCommand(input);
   const handler = commands[command];
+  
+  if (command === 'cat' && params.length > 0) {
+    // Pass the filename as context for cat commands
+    const filename = params[0];
+    return handler([filename], filename);
+  }
   
   return handler ? handler(params) : formatOutput(getCommandSuggestion(input), 'error');
 };
