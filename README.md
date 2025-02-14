@@ -1,6 +1,10 @@
 # Terminal Portfolio Website
 
+[Access the project](https://reedusfeleedus.github.io/)
+
 A unique and interactive portfolio website that combines the aesthetics of a terminal interface with the power of AI assistance. Experience my professional journey through an engaging command-line interface or have natural conversations with an AI assistant about my experience.
+
+<img width="1440" alt="Screenshot 2025-02-14 at 1 29 41 PM" src="https://github.com/user-attachments/assets/8a1b3ed9-5021-413b-9a2f-b62f111d0900" />
 
 ## 🌟 Key Features
 
@@ -9,6 +13,8 @@ A unique and interactive portfolio website that combines the aesthetics of a ter
 - **Command History**: Use up/down arrow keys to access previous commands
 - **Tab Completion**: Efficiently complete commands with tab auto-completion
 - **File System**: Browse through my experience using `ls`, `cat`, and other terminal commands
+
+<img width="1439" alt="image" src="https://github.com/user-attachments/assets/9746dc98-1a84-467f-988f-bb343718a2d8" />
 
 ### 🤖 AI Assistant Mode
 - **Natural Conversations**: Simply type 'ai' to enter AI mode and have natural conversations about my experience
