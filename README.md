@@ -1,8 +1,11 @@
-# Terminal Portfolio Website
+# Portfolio Terminal: Where Code Meets Creativity 🚀
+
+Welcome to my digital command center - a portfolio that breaks the mold of traditional resumes. This isn't just another website; it's an interactive experience that lets you explore my professional journey through the lens of a Unix-style terminal.
+
+## Why Terminal Style?
+Because great developers appreciate elegance in simplicity. Navigate through my experience using familiar commands like `ls` and `cat`, or switch to AI mode for an intelligent conversation in natural language about my projects and skills. It's your choice: go full terminal purist or chat naturally with an AI assistant powered by GPT-4.
 
 [Access the project](https://reedusfeleedus.github.io/)
-
-A unique and interactive portfolio website that combines the aesthetics of a terminal interface with the power of AI assistance. Experience my professional journey through an engaging command-line interface or have natural conversations with an AI assistant about my experience.
 
 <img width="1440" alt="Screenshot 2025-02-14 at 1 29 41 PM" src="https://github.com/user-attachments/assets/8a1b3ed9-5021-413b-9a2f-b62f111d0900" />
 
@@ -14,9 +17,10 @@ A unique and interactive portfolio website that combines the aesthetics of a ter
 - **Tab Completion**: Efficiently complete commands with tab auto-completion
 - **File System**: Browse through my experience using `ls`, `cat`, and other terminal commands
 
+### 🤖 AI Assistant Mode
+
 <img width="1439" alt="image" src="https://github.com/user-attachments/assets/9746dc98-1a84-467f-988f-bb343718a2d8" />
 
-### 🤖 AI Assistant Mode
 - **Natural Conversations**: Simply type 'ai' to enter AI mode and have natural conversations about my experience
 - **Intelligent Responses**: Powered by GPT-4, the AI assistant provides detailed insights about my:
   - Projects and achievements
