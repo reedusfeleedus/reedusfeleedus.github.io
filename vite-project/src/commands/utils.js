@@ -30,6 +30,11 @@ export const getCommandSuggestion = (input) => {
     return `Command 'exit' can only be used in AI mode`;
   }
 
+  if (inputCommand === 'cd' && inputParts.length > 1) {
+  return `Command not found. Did you mean: cat ${inputParts[1]}`;
+  }
+
+
   // Handle 'cat' command with file arguments
   if (inputCommand === 'cat' && inputParts.length > 1) {
     const fileArg = inputParts[1];
