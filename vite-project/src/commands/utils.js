@@ -30,8 +30,18 @@ export const getCommandSuggestion = (input) => {
     return `Command 'exit' can only be used in AI mode`;
   }
 
+
+   // Handle 'cd' command 
   if (inputCommand === 'cd' && inputParts.length > 1) {
-  return `Command not found. Did you mean: cat ${inputParts[1]}`;
+    const fileArg = inputParts[1];
+
+    // If the fileArg has an extension (e.g., '.txt', '.pdf', etc.), suggest 'cat <filename>'
+    if (fileArg.includes('.')) {
+      return `Command not found. Did you mean: cat ${fileArg}`;
+    }
+
+    // If the fileArg does not have an extension, suggest appending '.txt'
+    return `Command not found. Did you mean: cat ${fileArg}.txt`;
   }
 
 
