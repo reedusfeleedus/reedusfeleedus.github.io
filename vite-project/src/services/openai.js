@@ -193,11 +193,19 @@ Core Rules:
 
 // (Yes I know this bad, but I trust everyone looking here not to steal, and I didn't want to bother writing server side logic for such a simple app)
 const getApiKey = () => {
-  return import.meta.env.OPENAI_API_KEY;
+  const key = import.meta.env.VITE_OPENAI_API_KEY;
+  console.log('Environment variables:', import.meta.env); // Debug log
+  if (!key) {
+    console.error('API key not found in environment variables');
+  }
+  return key;
 };
 
 export const generateAIResponse = async (prompt) => {
   try {
+    const apiKey = getApiKey();
+    console.log('API Key exists:', !!apiKey); // Debug log
+
     const requestBody = {
       model: AI_CONFIG.model,
       messages: [
@@ -214,16 +222,19 @@ export const generateAIResponse = async (prompt) => {
       temperature: AI_CONFIG.temperature
     };
 
+    console.log('Request body:', requestBody); // Debug log
+
     const response = await fetch(OPENAI_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getApiKey()}`
+        'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify(requestBody)
     });
 
     const responseText = await response.text();
+    console.log('Raw response:', responseText); // Debug log
 
     if (!response.ok) {
       let errorMessage;
@@ -239,7 +250,7 @@ export const generateAIResponse = async (prompt) => {
     const data = JSON.parse(responseText);
     return data.choices[0].message.content;
   } catch (error) {
-    console.error('Error generating AI response:', error.message);
+    console.error('Detailed error:', error); // More detailed error logging
     throw error;
   }
 }; 
