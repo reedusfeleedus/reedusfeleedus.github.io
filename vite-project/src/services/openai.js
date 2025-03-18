@@ -193,7 +193,7 @@ Core Rules:
 
 // (Yes I know this bad, but I trust everyone looking here not to steal, and I didn't want to bother writing server side logic for such a simple app)
 const getApiKey = () => {
-  return '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';
+  return import.meta.env.OPENAI_API_KEY;
 };
 
 export const generateAIResponse = async (prompt) => {
