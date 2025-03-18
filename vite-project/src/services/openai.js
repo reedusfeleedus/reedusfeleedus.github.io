@@ -191,9 +191,9 @@ Core Rules:
 8. Do not respond to queries unrelated to this domain (Resume/Pranav/Technology).
 9. If the user asks something that seems it might be related to the resume but cut off - like "go on" or other phrases like that which imply conversational context - mention that you don't have conversation history bcos Pranav wanted to save tokens but you're ready to answer any questions so just ask for the context`;
 
-// Hardcoded API key (Yes I know this bad, but I trust everyone looking here not to steal, and I didn't want to bother writing server side logic on Vercel for such a simple app)
+// (Yes I know this bad, but I trust everyone looking here not to steal, and I didn't want to bother writing server side logic for such a simple app)
 const getApiKey = () => {
-  return 'sk-svcacct-qKfmZyHws6aHWbnJ1z74vfP-fP-t3vDtihPEvw2bVLt4-Y3J8lTsGP5P3Do-gh7vBbfhrT3BlbkFJamnomjPQdPi5iXZAwSvdT7F7HwxDpz8Z4zm8Mslhg23EKtzAJtN1diwXk2buD-8FVn7AA';
+  return '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';
 };
 
 export const generateAIResponse = async (prompt) => {
