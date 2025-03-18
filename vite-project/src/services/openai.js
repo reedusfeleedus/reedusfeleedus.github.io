@@ -191,7 +191,6 @@ Core Rules:
 8. Do not respond to queries unrelated to this domain (Resume/Pranav/Technology).
 9. If the user asks something that seems it might be related to the resume but cut off - like "go on" or other phrases like that which imply conversational context - mention that you don't have conversation history bcos Pranav wanted to save tokens but you're ready to answer any questions so just ask for the context`;
 
-// (Yes I know this bad, but I trust everyone looking here not to steal, and I didn't want to bother writing server side logic for such a simple app)
 const getApiKey = () => {
   const key = import.meta.env.VITE_OPENAI_API_KEY;
   console.log('Environment variables:', import.meta.env); // Debug log
