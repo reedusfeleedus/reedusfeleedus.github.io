@@ -47,7 +47,7 @@ function App() {
       onClick: () => setState(s => ({ ...s, showBlog: true }))
     },
     random: {
-      label: 'Random',
+      label: 'Random Tid-bits',
       items: ['Bug Report', 'Work-Life Balance']
     },
     help: {

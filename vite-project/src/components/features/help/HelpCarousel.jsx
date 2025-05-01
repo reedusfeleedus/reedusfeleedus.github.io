@@ -53,8 +53,8 @@ const WindowControls = styled.div`
 `;
 
 const WindowButton = styled.button`
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -62,7 +62,7 @@ const WindowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 20px;
   color: #1E1E1E;
   font-weight: bold;
   line-height: 0;
@@ -114,9 +114,9 @@ const NavigationButton = styled.button`
   background: none;
   border: none;
   color: #E95420;
-  font-size: 36px;
+  font-size: 78px;
   cursor: pointer;
-  padding: 20px;
+  padding: 50px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -128,11 +128,11 @@ const NavigationButton = styled.button`
   }
   
   &.prev {
-    left: 10px;
+    left: -120px;
   }
   
   &.next {
-    right: 10px;
+    right: -120px;
   }
 `;
 
