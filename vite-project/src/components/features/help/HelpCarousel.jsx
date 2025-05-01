@@ -153,12 +153,12 @@ const Dot = styled.div`
 
 const slides = [
   {
-    description: "Start by typing 'help' to see all available commands. You can navigate through my portfolio using these core terminal commands.",
-    image: helpImage
-  },
-  {
     description: "Enter 'ai' mode to have a natural conversation about my experience and skills. Just type your questions normally! Type 'exit' to go back to normal mode.",
     image: aiImage
+  },
+  {
+    description: "Start by typing 'help' to see all available commands. You can navigate through my portfolio using these core terminal commands.",
+    image: helpImage
   },
   {
     description: "If you're a bit more tech savvy I encourage you to use commands like 'cat' to read files. Try 'cat projects.txt', or 'cat skills.txt' to learn more about me.",
