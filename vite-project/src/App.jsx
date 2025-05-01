@@ -26,7 +26,7 @@ function App() {
     isLoading: false,
     currentResponse: '',
     showBlog: false,
-    showHelpCarousel: false,
+    showHelpCarousel: true,
     completionMatches: []
   });
 
@@ -52,7 +52,7 @@ function App() {
     },
     help: {
       label: 'Site Tutorial',
-      items: ['View Tutorial'],
+      items: [],
       onClick: () => setState(s => ({ ...s, showHelpCarousel: true }))
     }
   };
@@ -259,6 +259,10 @@ function App() {
   };
 
   const handleMenuClick = menuKey => {
+    if (menuKey === 'help') {
+      setState(s => ({ ...s, showHelpCarousel: true }));
+      return;
+    }
     if (!state.isMenuBarActive) {
       setState(s => ({
         ...s,
