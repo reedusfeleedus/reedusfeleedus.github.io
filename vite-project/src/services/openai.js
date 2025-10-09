@@ -15,6 +15,12 @@ const PORTFOLIO_CONTEXT = {
   bio: "Aspiring technologist passionate about the intersection of AI, data science, and quantitative finance. Experienced in developing intelligent systems and leveraging machine learning for real-world applications. Particularly interested in robotics and algorithmic trading, with a proven track record of building innovative solutions that combine technical excellence with practical impact.",
   education: [
     {
+      institution: "University of California, San Diego (UCSD)",
+      location: "San Diego, USA",
+      degree: "Study Abroad Programme, Computer Science",
+      date: "Sep 2025 — Jun 2026"
+    },
+    {
       institution: "King's College London",
       location: "London, UK",
       degree: "Bachelor of Science, Computer Science (BSc Hons)",
@@ -69,12 +75,23 @@ const PORTFOLIO_CONTEXT = {
   },
   experience: [
     {
+      role: "Software Engineer Intern",
+      company: "HashLynx : Syndicated Loan Settlement Platform",
+      location: "London, UK",
+      date: "Mar 2025 – Sep 2025",
+      achievements: [
+        "Accelerated blockchain loan settlement testing cycles by 80%+ by designing Playwright automation frameworks",
+        "Increased release velocity by integrating test coverage into CI/CD pipelines, reducing deployment friction",
+        "Improved platform reliability by surfacing edge-case bugs early, enhancing UI/UX stability for loan trading execution"
+      ]
+    },
+    {
       role: "Java Co-lead",
       company: "KCL TECH",
       location: "London, UK",
       date: "Nov 2024",
       achievements: [
-        "Led organization of 3 hackathons with 150+ participants and co-designed Java curriculum, mentoring 40+ students through weekly hands-on programming sessions with 85% retention rate"
+        "Mentored 40+ students in weekly Java programming sessions, sustaining 85%+ retention across the term"
       ]
     },
     {
@@ -89,25 +106,37 @@ const PORTFOLIO_CONTEXT = {
   ],
   projects: [
     {
-      name: "LabelifyAI",
-      date: "Dec 2023",
+      name: "Customer Service Automation (AWS, LLMs)",
+      date: "Feb 2025",
       location: "London, UK",
-      techStack: ["Swift", "Python", "GPT-4 API", "macOS SDK", "Git"],
+      techStack: ["AWS Lambda", "Amazon API Gateway", "Amazon Bedrock", "AWS S3", "Python", "Django"],
       achievements: [
-        "Engineered a MacOS application leveraging GPT-4 Vision API to automate intelligent file naming through image content analysis, processing 10+ file formats with 98% accuracy",
-        "Implemented smart folder categorization system that auto-sorts files into hierarchical structures, reducing manual organization time by 80%",
-        "Achieved 95% reduction in file management overhead in production testing with 500+ files, decreasing naming time to 1 second per file"
+        "Reduced student query response times by 85% by integrating large language models into a serverless AWS Lambda system, eliminating delays from email-based workflows",
+        "Cut manual triage time 70% by deploying Amazon Bedrock to auto-classify tickets with 92% accuracy and route them via S3-backed storage",
+        "Engineered prompt templates and few-shot examples for Bedrock to achieve high classification accuracy, with fallback routing for edge cases",
+        "Enabled data-driven improvements in university services through an analytics dashboard tracking response speed and satisfaction"
       ]
     },
     {
-      name: "Okapi Tutoring Platform",
+      name: "Automated File Naming System (GPT-4 Vision, macOS app)",
+      date: "Dec 2023",
+      location: "London, UK",
+      techStack: ["CustomTkinter", "Python", "GPT-4 API", "macOS SDK"],
+      achievements: [
+        "Cut file management overhead by 95% in production testing (500+ files) with a MacOS app that automated file naming across 10+ formats",
+        "Improved content discoverability by processing visual elements through GPT-4 Vision API, generating filenames with 96% relevance",
+        "Reduced search time for desktop files from minutes to seconds, streamlining workflows for large datasets"
+      ]
+    },
+    {
+      name: "Code Tutoring Platform (Full Stack)",
       date: "Nov 2024",
       location: "London, UK",
       techStack: ["Django", "Python"],
       achievements: [
-        "Architected a full-stack tutoring platform in Django, featuring real-time ticket-based communication system and role-based dashboards for 100+ student-tutor pairs",
-        "Engineered automated scheduling system with conflict resolution, reducing manual booking time by 70% and increasing tutor utilization by 40%",
-        "Implemented secure authentication and personalized dashboards, achieving 95% user satisfaction rate with zero data breaches"
+        "Developed a Django-based tutoring platform with role-based dashboards and real-time ticket-style communication, supporting over 100 student–tutor pairs in testing",
+        "Built an automated scheduling system with conflict resolution that reduced booking steps by 70% compared to manual coordination",
+        "Implemented secure authentication and personalized dashboards, maintaining smooth operation with no reported breaches or access issues during deployment"
       ]
     },
     {
@@ -185,11 +214,12 @@ Core Rules:
    - Never claim I have them
    - Instead highlight related proven abilities
 4. Keep responses brief but informative
-5. Prioritize projects over work experience - when asked about work experience, mention them but then ask the user to ask about projects instead.
-6. Never invent or hallucinate information
-7. ALWAYS speak positively about Pranav.
-8. Do not respond to queries unrelated to this domain (Resume/Pranav/Technology).
-9. If the user asks something that seems it might be related to the resume but cut off - like "go on" or other phrases like that which imply conversational context - mention that you don't have conversation history bcos Pranav wanted to save tokens but you're ready to answer any questions so just ask for the context`;
+5. When discussing work experience, prioritize and highlight my HashLynx (HLX) Software Engineer Intern role - it's my most recent and significant experience with blockchain testing and automation. Encourage users to ask more about it.
+6. For projects, guide users to ask about the Customer Service Automation project and other recent work.
+7. Never invent or hallucinate information
+8. ALWAYS speak positively about Pranav.
+9. Do not respond to queries unrelated to this domain (Resume/Pranav/Technology).
+10. If the user asks something that seems it might be related to the resume but cut off - like "go on" or other phrases like that which imply conversational context - mention that you don't have conversation history bcos Pranav wanted to save tokens but you're ready to answer any questions so just ask for the context`;
 
 const getApiKey = () => {
   const key = import.meta.env.VITE_OPENAI_API_KEY;
