@@ -3,10 +3,14 @@ export const FILES = {
 EDUCATION
 =========
 
+University of California, San Diego (UCSD), San Diego, USA
+Study Abroad Programme, Computer Science
+- September 2025 — June 2026
+
 King's College London, London, UK
 Bachelor of Science, Computer Science (BSc Hons)
 - On track for a First Class
-- Expected Graduation: June 2026
+- Expected Graduation: June 2027
 
 Global Public School, Kochi, India
 A Levels (April 2022)
@@ -18,6 +22,12 @@ A Levels (April 2022)
   'experience.txt': `
 EXPERIENCE
 ==========
+
+HashLynx: Syndicated Loan Settlement Platform (Mar 2025 – Sep 2025)
+Software Engineer Intern, London, UK
+- Accelerated blockchain loan settlement testing cycles by 80%+ by designing Playwright automation frameworks
+- Increased release velocity by integrating test coverage into CI/CD pipelines, reducing deployment friction
+- Improved platform reliability by surfacing edge-case bugs early, enhancing UI/UX stability for loan trading execution
 
 KCL TECH (Nov 2024) - Java Co-lead, London, UK
 - Led organization of 3 hackathons with 150+ participants
@@ -33,17 +43,24 @@ iBus Networks (Jun 2023) - Frontend Developer Intern, Bangalore, India
 PROJECTS
 ========
 
-LabelifyAI (Dec 2023) - London, UK
-Tech Stack: Swift, Python, GPT-4 API, macOS SDK, Git
-- Engineered MacOS application for automated file naming using GPT-4 Vision API, processing 10+ file formats with 98% accuracy
-- Implemented smart folder categorization system, reducing manual organization time by 80%
-- Achieved 95% reduction in file management overhead in production testing with 500+ files
+Customer Service Automation (AWS, LLMs) (Feb 2025) - London, UK
+Tech Stack: AWS Lambda, Amazon API Gateway, Amazon Bedrock, AWS S3, Python, Django
+- Reduced student query response times by 85% by integrating large language models into serverless AWS Lambda system
+- Cut manual triage time 70% by deploying Amazon Bedrock to auto-classify tickets with 92% accuracy
+- Engineered prompt templates and few-shot examples for Bedrock to achieve high classification accuracy
+- Enabled data-driven improvements through analytics dashboard tracking response speed and satisfaction
 
-Okapi Tutoring Platform (Nov 2024) - London, UK
+Automated File Naming System (GPT-4 Vision, macOS app) (Dec 2023) - London, UK
+Tech Stack: CustomTkinter, Python, GPT-4 API, macOS SDK
+- Cut file management overhead by 95% in production testing (500+ files) with MacOS app automating file naming across 10+ formats
+- Improved content discoverability by processing visual elements through GPT-4 Vision API, generating filenames with 96% relevance
+- Reduced search time for desktop files from minutes to seconds, streamlining workflows for large datasets
+
+Code Tutoring Platform (Full Stack) (Nov 2024) - London, UK
 Tech Stack: Django, Python
-- Built full-stack tutoring platform with ticket-based communication system for 100+ student-tutor pairs
-- Engineered automated scheduling system, reducing manual booking time by 70%
-- Implemented secure authentication with 95% user satisfaction and zero data breaches
+- Developed Django-based tutoring platform with role-based dashboards and real-time ticket-style communication
+- Built automated scheduling system with conflict resolution that reduced booking steps by 70%
+- Implemented secure authentication and personalized dashboards, maintaining smooth operation with no reported breaches
 
 Cell Simulator (Mar 2024) - London, UK
 Tech Stack: Java, JavaFX, JUnit, Git
@@ -99,7 +116,7 @@ Email: pranav.subash.mail@gmail.com
 Phone: +44 7721992381
 LinkedIn: linkedin.com/in/pranavsubash/
 GitHub: github.com/reedusfeleedus
-Location: London, UK`,
+Location: San Diego, CA, USA`,
 
   'resume.pdf': 'Resume content will be handled separately as a PDF file'
 };

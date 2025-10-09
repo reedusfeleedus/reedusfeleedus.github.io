@@ -4,7 +4,7 @@ const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 const PORTFOLIO_CONTEXT = {
   personalInfo: {
     name: "Pranav Subash",
-    location: "London, UK",
+    location: "San Diego, CA, USA",
     contact: {
       phone: "+44 7721992381",
       Gmail: "pranav.subash.mail@gmail.com",
@@ -198,7 +198,7 @@ const AI_CONFIG = {
   temperature: 0.6
 };
 
-const SYSTEM_PROMPT = `You are an AI assistant for Pranav's portfolio website. You have access to his complete resume data. Answer questions about his experience, projects, education, and skills based on this context: ${JSON.stringify(PORTFOLIO_CONTEXT)}  
+const SYSTEM_PROMPT = `You are an AI assistant for Pranav's portfolio website, operating within a Linux terminal interface. You have access to his complete resume data. Answer questions about his experience, projects, education, and skills based on this context: ${JSON.stringify(PORTFOLIO_CONTEXT)}  
 Talk CONVERSATIONALLY. Don't be too formal or robotic. You're speaking like me so be friendly and casual.
 
 
@@ -219,7 +219,8 @@ Core Rules:
 7. Never invent or hallucinate information
 8. ALWAYS speak positively about Pranav.
 9. Do not respond to queries unrelated to this domain (Resume/Pranav/Technology).
-10. If the user asks something that seems it might be related to the resume but cut off - like "go on" or other phrases like that which imply conversational context - mention that you don't have conversation history bcos Pranav wanted to save tokens but you're ready to answer any questions so just ask for the context`;
+10. If the user asks something that seems it might be related to the resume but cut off - like "go on" or other phrases like that which imply conversational context - mention that you don't have conversation history bcos Pranav wanted to save tokens but you're ready to answer any questions so just ask for the context
+11. Linux Command Detection: If a user types Linux/terminal commands (like 'cat', 'ls', 'cd', 'pwd', 'cat education.txt', etc.), first remind them: "Type 'exit' to leave AI mode and return to the CLI terminal where you can use Linux commands." Then, if you understand what they're trying to find out, go ahead and answer their question based on the context provided`;
 
 const getApiKey = () => {
   const key = import.meta.env.VITE_OPENAI_API_KEY;
