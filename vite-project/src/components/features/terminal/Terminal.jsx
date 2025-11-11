@@ -7,6 +7,7 @@ const Terminal = ({
   state,
   onCommand,
   onKeyDown,
+  onInput,
   onClick,
   inputRef
 }) => {
@@ -16,7 +17,10 @@ const Terminal = ({
 
   return (
     <div className="terminal-container" onClick={onClick}>
-      <div className="terminal-line">{MESSAGES.WELCOME}</div>
+      <div
+        className="terminal-line"
+        dangerouslySetInnerHTML={{ __html: formatText(MESSAGES.WELCOME) }}
+      />
       
       {sortedOutput.map((entry, idx) => (
         <div key={`entry-${idx}`}>
@@ -51,13 +55,27 @@ const Terminal = ({
 
       <div className="terminal-line">
         <span className={`terminal-prompt ${state.isAIMode ? 'ai-mode' : ''}`} />
-        <span
-          ref={inputRef}
-          className={`terminal-input ${state.isAIMode ? 'ai-question' : ''}`}
-          contentEditable
-          onKeyDown={onKeyDown}
-          suppressContentEditableWarning
-        />
+        <span className="terminal-input-wrapper">
+          <span
+            className="terminal-ghost"
+            aria-hidden="true"
+          >
+            {!state.isAIMode ? state.ghostSuggestion : ''}
+          </span>
+          <span
+            ref={inputRef}
+            className={`terminal-input ${state.isAIMode ? 'ai-question' : ''}`}
+            contentEditable
+            data-placeholder={
+              state.isAIMode
+                ? 'What can you do?'
+                : 'Type "ai" to get started or use Linux-based commands to explore the file directory'
+            }
+            onInput={onInput}
+            onKeyDown={onKeyDown}
+            suppressContentEditableWarning
+          />
+        </span>
       </div>
     </div>
   );

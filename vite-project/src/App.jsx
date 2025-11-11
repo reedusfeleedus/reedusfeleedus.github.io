@@ -27,7 +27,8 @@ function App() {
     currentResponse: '',
     showBlog: false,
     showHelpCarousel: true,
-    completionMatches: []
+    completionMatches: [],
+    ghostSuggestion: ''
   });
 
   const { displayText, isComplete } = useTypewriter(state.currentResponse, 10);
@@ -55,6 +56,56 @@ function App() {
       items: [],
       onClick: () => setState(s => ({ ...s, showHelpCarousel: true }))
     }
+  };
+
+  const getGhostSuggestion = (inputText = '') => {
+    const value = inputText ?? '';
+    if (!value) return '';
+
+    const completion = handleTabCompletion(value);
+    const { matches, type } = completion;
+
+    if (!matches?.length) {
+      return '';
+    }
+
+    const firstMatch = matches[0];
+
+    if (type === 'command') {
+      const trimmed = value.trim();
+      if (!trimmed) return '';
+      if (!firstMatch.toLowerCase().startsWith(trimmed.toLowerCase())) return '';
+      if (firstMatch.length === trimmed.length) return '';
+      return value + firstMatch.slice(trimmed.length);
+    }
+
+    if (type === 'file') {
+      const lastSpaceIndex = value.lastIndexOf(' ');
+      const partial = lastSpaceIndex === -1 ? value : value.slice(lastSpaceIndex + 1);
+      const base = lastSpaceIndex === -1 ? '' : value.slice(0, lastSpaceIndex + 1);
+      if (!firstMatch.toLowerCase().startsWith(partial.toLowerCase())) return '';
+      if (firstMatch.length === partial.length) return '';
+      return base + firstMatch;
+    }
+
+    return '';
+  };
+
+  const handleInputChange = () => {
+    if (!inputRef.current) return;
+    const value = inputRef.current.textContent || '';
+    const ghostText = getGhostSuggestion(value);
+
+    setState(s => {
+      if (s.ghostSuggestion === ghostText && s.completionMatches.length === 0) {
+        return s;
+      }
+      return {
+        ...s,
+        ghostSuggestion: ghostText,
+        completionMatches: []
+      };
+    });
   };
 
   useEffect(() => {
@@ -114,7 +165,8 @@ function App() {
             timestamp: Date.now()
           }
         ],
-        aiOutputHistory: []
+        aiOutputHistory: [],
+        ghostSuggestion: ''
       }));
       return;
     }
@@ -170,7 +222,8 @@ function App() {
           output: 'Entering AI mode. Ask me anything about my experience, projects, or skills!',
           type: 'system',
           timestamp: Date.now()
-        }]
+        }],
+        ghostSuggestion: ''
       }));
       return;
     }
@@ -183,7 +236,8 @@ function App() {
           output: 'Error: The exit command can only be used in AI mode.',
           type: 'normal',
           timestamp: Date.now()
-        }]
+        }],
+        ghostSuggestion: ''
       }));
       return;
     }
@@ -220,6 +274,11 @@ function App() {
       
       handleCommand(command);
       inputRef.current.textContent = '';
+      setState(s => ({
+        ...s,
+        completionMatches: [],
+        ghostSuggestion: ''
+      }));
     } 
     else if (e.key === 'Tab') {
       e.preventDefault();
@@ -227,15 +286,19 @@ function App() {
       const completion = handleTabCompletion(input);
       const { newInput, showMatches, matches } = applyCompletion(input, completion);
       
-      setState(s => ({
-        ...s,
-        completionMatches: showMatches ? matches : []
-      }));
-
       if (!showMatches) {
         inputRef.current.textContent = newInput;
         moveCaretToEnd(inputRef.current);
       }
+
+      const updatedInput = showMatches ? input : newInput;
+      const ghostText = getGhostSuggestion(updatedInput);
+
+      setState(s => ({
+        ...s,
+        completionMatches: showMatches ? matches : [],
+        ghostSuggestion: ghostText
+      }));
     }
     else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
@@ -243,6 +306,12 @@ function App() {
       if (command !== null) {
         inputRef.current.textContent = command;
         moveCaretToEnd(inputRef.current);
+        const ghostText = getGhostSuggestion(command);
+        setState(s => ({
+          ...s,
+          ghostSuggestion: ghostText,
+          completionMatches: []
+        }));
       }
     }
   };
@@ -359,6 +428,7 @@ function App() {
         state={state}
         onCommand={handleCommand}
         onKeyDown={handleKeyDown}
+          onInput={handleInputChange}
         onClick={handleTerminalClick}
         inputRef={inputRef}
       />

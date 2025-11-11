@@ -147,6 +147,10 @@ body {
   font-size: 1rem;
   outline: none;
   caret-color: #FFFFFF;
+  white-space: pre;
+  position: relative;
+  z-index: 1;
+  background: transparent;
 }
 
 /* Override input color in AI mode */
@@ -155,11 +159,43 @@ body {
   caret-color: #00ffff;
 }
 
+.terminal-input:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.terminal-input-wrapper {
+  position: relative;
+  display: inline-block;
+  min-width: 1px;
+}
+
+.terminal-ghost {
+  position: absolute;
+  inset: 0;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+  white-space: pre;
+  line-height: 1.4;
+}
+
 /* Output Styling */
 .terminal-line {
   margin: 0.5rem 0;
   line-height: 1.4;
   white-space: pre-wrap;
+}
+
+.terminal-banner {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 .output-line {
