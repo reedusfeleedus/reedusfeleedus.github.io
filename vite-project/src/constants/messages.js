@@ -11,17 +11,19 @@ export const MESSAGES = {
   COMMAND_NOT_FOUND: (cmd) => `Command not found: ${cmd}`,
   FILE_NOT_FOUND: (file) => `File not found: ${file}`,
   MISSING_ARGS: (cmd) => `Usage: ${cmd} <filename>`,
-  WELCOME: `<div class="terminal-banner"> ⚠️ This is a Fake Terminal. </div>
- Use the site tutorial on the top to get started, or type 'help' to see available commands.
- The site comes with two modes:
+  WELCOME: `<div class="terminal-banner">⚠️ This is a Fake Terminal.</div>
+👋 Hi, my name is Pranav Subash and this is an interactive way to explore my work.
 
-1. AI ASSISTANT (For non-technical users): Type 'ai' to enter AI mode, type 'exit' to exit AI mode.
-   AI mode allows you to chat with me in natural language about my experience and projects.
-2. TERMINAL COMMANDS (For tech-savvy users): Use normal terminal commands like 'ls', 'cat', 'pwd', etc.
+📚 Quick Start
+• Use the tutorial at the top of the site, or type 'help' for the command list.
 
- Since this is a command line interface, it's designed for desktop viewing. Mobile experience will be limited.
+📋 Two Ways to Explore
+1️⃣ AI ASSISTANT (best for casual visitors): Type 'ai' to start chatting. Type 'exit' when you're done.
+2️⃣ TERMINAL COMMANDS (for techies): Try familiar commands like 'ls', 'cat', 'pwd', and more.
 
-Happy exploring! 🚀`,
+📱 Heads up: This command-line experience is designed for desktop. Mobile support is limited.
+
+🚀 Ready when you are, have fun exploring!`,
 
   PWD: '/home/portfolio'
 };
