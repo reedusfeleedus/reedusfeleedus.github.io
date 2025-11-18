@@ -200,7 +200,7 @@ function App() {
         const newHistory = [...s.aiOutputHistory];
         const lastEntry = newHistory[newHistory.length - 1];
         if (lastEntry?.timestamp === timestamp) {
-          lastEntry.output = 'I apologize, but I\'m unable to generate responses at the moment - API credits exhausted. I have been notified and will restore service shortly. Please try again later.';
+          lastEntry.output = 'I apologize, but I\'m unable to generate responses at the moment - my API credits have been exhausted. I have been notified and will restore service shortly. Please try again later.';
         }
         return {
           ...s,
